@@ -1,1 +1,1 @@
-# `Smile Pure` - A better life starts with a beautiful smile.
+# Smile Pure - A better life starts with a beautiful smile.

@@ -1,8 +1,26 @@
+import { Route, Routes } from "react-router-dom";
+import About from "./Pages/Home/About/About";
+import Blog from "./Pages/Home/Blog/Blog";
+import Home from "./Pages/Home/Home/Home/Home";
+import Login from "./Pages/Home/Login_Pages/Login/Login";
+import Register from "./Pages/Home/Login_Pages/Register/Register";
+import NotFound from "./Pages/Home/Not_Found/NotFound";
+import Navbar from "./Pages/Shared/Navbar/Navbar";
+
 function App() {
   return (
-    <div className="App">
-     
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
 
