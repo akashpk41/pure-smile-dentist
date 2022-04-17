@@ -5,21 +5,21 @@ const Navbar = () => {
   return (
     <nav className="bg-white border-b-2  border-blue-200 px-2 sm:px-4 py-2 ">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
-
-          <Link to='/' >
+        <Link to="/">
           <span className="self-center text-2xl font-mono text-blue-700 font-semibold whitespace-nowrap cursor-pointer ">
-          Smile Pure
-          </span></Link>
+            Smile Pure
+          </span>
+        </Link>
 
         <div className="flex md:order-2">
           <Link
-            to='/login'
+            to="/login"
             className=" hidden md:block border-2 border-blue-700 text-blue-700 hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center mr-3  "
           >
             Login
           </Link>
           <Link
-            to='/register'
+            to="/register"
             className="text-white hidden md:block bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center   "
           >
             Register
@@ -74,7 +74,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#/services"
+                href="#services"
                 className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
               >
                 Services

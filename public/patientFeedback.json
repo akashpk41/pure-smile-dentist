@@ -1,0 +1,20 @@
+[
+     {
+       "name": "Emma Bella",
+       "id": 1,
+       "img": "https://pbs.twimg.com/media/D8dDZukXUAAXLdY.jpg",
+       "description": "Excellent doctor!!!Very thorough and caring. I'm terribly afraid of the dentist and he's very sensitive to that and goes the extra mile to make you feel comfortable. Love him!"
+     },
+     {
+       "name": "Jackson Oslo",
+       "id": 2,
+       "img": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+       "description": "Very pleasant indeed! Dr. Nasir Uddin is a great doctor who listens to the patient and takes care of him/her with great attention.."
+     },
+     {
+       "name": "Walter Ego",
+       "id": 3,
+       "img": "https://www.walterego.golf/owm8.jpg",
+       "description": "Dear Dr Nasir Uddin, thank you for the amazing work you have done on my teeth. I'm so happy to have found such great dentist"
+     }
+   ]

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useServices from "../../../../hooks/useServices";
+import useFakeData from "../../../../hooks/useFakeData";
 
 const ServiceList = ({ services }) => {
   const { service1, service2, service3, service4 } = services;
