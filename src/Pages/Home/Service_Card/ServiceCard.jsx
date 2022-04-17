@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ServiceList from "./Service_List/ServiceList";
 
 const ServiceCard = ({ service }) => {
@@ -18,8 +19,8 @@ const ServiceCard = ({ service }) => {
         <h5 className="mb-3 text-4xl md:text-3xl text-center font-bold tracking-tight text-blue-800 ">
           {price}
         </h5>
-        <a
-          href="/"
+        <Link
+          to="/checkout"
           className="inline-flex text-center items-center py-2 px-3  text-xl md:text-sm font-medium  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
         >
           Book Now
@@ -35,7 +36,7 @@ const ServiceCard = ({ service }) => {
               clip-rule="evenodd"
             ></path>
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );
