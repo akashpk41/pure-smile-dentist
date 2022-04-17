@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className=" flex flex-col md:flex-row mx-1  items-center border-2 border-blue-600 shadow-2xl md:w-4/5 md:mx-auto my-5 rounded-lg md:p-10  justify-center ">
+    <div data-aos="flip-up" className=" flex flex-col md:flex-row mx-1  items-center border-2 border-blue-600 shadow-2xl md:w-4/5 md:mx-auto my-5 rounded-lg md:p-10  justify-center ">
       <div className="left-side">
         <img
           className=" w-96 rounded-lg "

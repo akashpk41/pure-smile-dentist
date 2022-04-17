@@ -1,0 +1,41 @@
+[
+     {
+       "packageName": "Basic",
+       "id": 1,
+       "price": "4.99/m"  ,
+       "img": "https://i.ibb.co/K6B6HdV/service-1.jpg",
+       "description": "lorem",
+       "services": {
+         "service1": "Video Call 5/day",
+         "service2": "Audio Call 1hr/day",
+         "service3": "Digital Prescription",
+         "service4": "Doctor Chat"
+       }
+     },
+     {
+       "packageName": "Standard",
+       "id": 2,
+       "price": "9.99/m"  ,
+       "img": "https://i.ibb.co/3FWk3dc/service-2.jpg",
+       "description": "lorem",
+       "services": {
+        "service1": "Video Call 15/day",
+        "service2": "Audio Call 2hr/day",
+        "service3": "Digital Prescription",
+        "service4": "Doctor Chat"
+       }
+     },
+     {
+       "packageName": "Premium",
+       "id": 3,
+       "price": "14.99/m"  ,
+       "img": "https://i.ibb.co/hMZ9ykL/service-3.jpg",
+       "description": "lorem",
+       "services": {
+        "service1": "Video Call Unlimited",
+        "service2": "Audio Call Unlimited",
+        "service3": "Digital Prescription",
+        "service4": "Doctor Chat"
+       }
+     }
+   ]
