@@ -2,12 +2,11 @@ import React from "react";
 import ServiceList from "./Service_List/ServiceList";
 
 const ServiceCard = ({ service }) => {
-  const { packageName, img, services,price } = service;
+  const { packageName, img, services, price } = service;
   console.log(services);
 
-
   return (
-    <div  className="max-w-sm text-center  mx-2 mt-5 md:mt-0 bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-2xl hover:scale-105 duration-300 ease-in-out ">
+    <div className="max-w-sm text-center  mx-2 mt-5 md:mt-0 bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-2xl hover:scale-105 duration-300 ease-in-out ">
       <img className="rounded-t-lg" src={img} alt="" />
 
       <div className="p-5">
@@ -15,13 +14,13 @@ const ServiceCard = ({ service }) => {
           {packageName}
         </h5>
 
-        <ServiceList services={ services}  />
-        <h5 className="mb-3 text-3xl text-center font-bold tracking-tight text-blue-800 ">
+        <ServiceList services={services} />
+        <h5 className="mb-3 text-4xl md:text-3xl text-center font-bold tracking-tight text-blue-800 ">
           {price}
         </h5>
         <a
           href="/"
-          className="inline-flex text-center items-center py-2 px-3 text-sm font-medium  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+          className="inline-flex text-center items-center py-2 px-3  text-xl md:text-sm font-medium  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
         >
           Book Now
           <svg

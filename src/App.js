@@ -5,6 +5,7 @@ import Home from "./Pages/Home/Home/Home/Home";
 import Login from "./Pages/Home/Login_Pages/Login/Login";
 import Register from "./Pages/Home/Login_Pages/Register/Register";
 import NotFound from "./Pages/Home/Not_Found/NotFound";
+import Footer from "./Pages/Shared/Navbar/Footer/Footer";
 import Navbar from "./Pages/Shared/Navbar/Navbar";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 }
