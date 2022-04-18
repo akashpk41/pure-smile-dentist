@@ -1,33 +1,53 @@
-import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import React, { useState } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+import {
+  useAuthState,
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../../../firebase.init";
 import SocialLogin from "../Social_Login/SocialLogin";
+import UserLoading from "../../Loading/UserLoading";
 
 const Login = () => {
+  const [user] = useAuthState(auth);
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
   });
 
-  const [errors, setErrors] = useState({
-    emailError: "",
-    passwordError: "",
-  });
+  // ! send password reset email
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const [togglePassword, setTogglePassword] = useState(false);
+  const navigate = useNavigate();
+  if (user) {
+    navigate("/checkout");
+  }
 
   // ! sign in with email and password
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, existUser, loading, error] =
     useSignInWithEmailAndPassword(auth);
+
+  const handlePasswordReset = async () => {
+    if (userInfo.email) {
+      await sendPasswordResetEmail(userInfo.email);
+      toast("Sent email");
+    } else {
+      toast("please enter your email address");
+    }
+  };
 
   const handleLoginUser = (e) => {
     e.preventDefault();
     console.log(userInfo.email, userInfo.password);
     signInWithEmailAndPassword(userInfo.email, userInfo.password);
+
     console.log(user);
     console.log(error);
-    
   };
 
   return (
@@ -85,11 +105,15 @@ const Login = () => {
         </div>
         <div className="flex items-start mb-6">
           <div className="ml-3 text-sm">
-            <button className="text-blue-800 text-base md:text-sm hover:underline font-semibold ">
+            <button
+              onClick={handlePasswordReset}
+              className="text-blue-800 text-base md:text-sm hover:underline font-semibold "
+            >
               Forget Password ?
             </button>
           </div>
         </div>
+        {sending && <UserLoading />}
         <button
           type="submit"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base md:text-sm w-full  px-5 py-2.5 text-center "
@@ -106,6 +130,7 @@ const Login = () => {
         </p>
       </form>
       <SocialLogin />
+      <ToastContainer />
     </div>
   );
 };

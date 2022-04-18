@@ -14,11 +14,11 @@ const Navbar = () => {
           </span>
         </Link>
 
-        <div className="flex md:order-2">
+        <div className="flex  md:order-2">
           {user ? (
             <button
               onClick={() => signOut(auth)}
-              className=" flex  border-2 border-blue-700 text-blue-700 hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center mr-3  "
+              className=" flex  border-2 border-blue-700 text-blue-700 hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2 text-center mr-3  "
             >
               Log out{" "}
               <span className="ml-2">
@@ -42,7 +42,7 @@ const Navbar = () => {
             <span className="flex">
               <Link
                 to="/login"
-                className=" flex  border-2 border-blue-700 text-blue-700 hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center mr-3  "
+                className=" flex  border-2 border-blue-700 text-blue-700 hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2 text-center mr-3  "
               >
                 Login{" "}
                 <span className="ml-2">
