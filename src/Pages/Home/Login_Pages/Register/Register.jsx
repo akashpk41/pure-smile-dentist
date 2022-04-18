@@ -91,8 +91,7 @@ const Register = () => {
     e.preventDefault();
     await createUserWithEmailAndPassword(userInfo.email, userInfo.password);
     await updateProfile({ displayName: userInfo.name });
-    console.log(user);
-    // console.log(firebaseError);
+   
   };
 
   return (

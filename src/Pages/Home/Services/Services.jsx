@@ -4,7 +4,6 @@ import ServiceCard from "../Service_Card/ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useFakeData("serviceData.json");
-  // console.log(services);
   return (
     <div id="services" className="md:w-4/5 my-5 md:mx-auto">
       <h2 className="text-2xl font-bold mb-5 text-center ">My Services</h2>

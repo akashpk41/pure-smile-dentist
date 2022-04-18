@@ -45,11 +45,9 @@ const Login = () => {
 
   const handleLoginUser = (e) => {
     e.preventDefault();
-    console.log(userInfo.email, userInfo.password);
+
     signInWithEmailAndPassword(userInfo.email, userInfo.password);
 
-    console.log(user);
-    console.log(error);
   };
 
   return (

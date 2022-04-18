@@ -4,7 +4,6 @@ import ServiceList from "./Service_List/ServiceList";
 
 const ServiceCard = ({ service }) => {
   const { packageName, img, services, price } = service;
-  console.log(services);
 
   return (
     <div className="max-w-sm text-center  mx-2 mt-5 md:mt-0 bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-2xl hover:scale-105 duration-300 ease-in-out ">

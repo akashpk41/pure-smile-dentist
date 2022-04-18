@@ -4,7 +4,6 @@ import ShowFeedback from "./Show_Feedback/ShowFeedback";
 
 const PatientFeedback = () => {
   const [feedbacks, setFeedbacks] = useFakeData("patientFeedback.json");
-  // console.log(data);
 
   return (
     <div id="services" className="md:w-4/5 my-10 md:mx-auto">
