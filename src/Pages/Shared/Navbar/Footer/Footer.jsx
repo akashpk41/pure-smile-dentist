@@ -1,35 +1,36 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="p-4  text-base md:text-sm  shadow md:flex md:items-center md:justify-between md:p-6 bg-gray-800">
       <span className=" text-gray-500 sm:text-center ">
         © 2022{" "}
-        <a href="/" className="hover:underline">
-          Smile Pure
-        </a>
+        <Link to="/" className="hover:underline">
+        Pure Smile
+        </Link>
         . All Rights Reserved.
       </span>
       <ul className="flex text-base md:text-sm flex-wrap items-center mt-3  text-gray-500  sm:mt-0">
         <li>
-          <a href="#" className="mr-4 hover:underline md:mr-6 ">
+          <Link to="/about" className="mr-4 hover:underline md:mr-6 ">
             About
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="mr-4 hover:underline md:mr-6">
-            Privacy Policy
-          </a>
+          <Link to="/blog" className="mr-4 hover:underline md:mr-6">
+            Blog
+          </Link>
         </li>
         <li>
-          <a href="#" className="mr-4 hover:underline md:mr-6">
+          <Link to="/licensing" className="mr-4 hover:underline md:mr-6">
             Licensing
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="hover:underline">
+          <Link to="/contact" className="hover:underline">
             Contact
-          </a>
+          </Link>
         </li>
       </ul>
     </footer>
