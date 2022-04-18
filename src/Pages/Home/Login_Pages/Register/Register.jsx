@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import SocialLogin from "../Social_Login/SocialLogin";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import { auth } from "../../../../firebase.init";
+import Loading from "../../Loading/Loading";
+import UserLoading from "../../Loading/UserLoading";
 
 const Register = () => {
   // ! get user information from input field.
@@ -28,9 +30,9 @@ const Register = () => {
 
   // ! create user with firebase hooks
   const [createUserWithEmailAndPassword, user, loading, firebaseError] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   // ! update user name
-  const [updateProfile, updating, error] = useUpdateProfile(auth);
+  const [updateProfile] = useUpdateProfile(auth);
 
   const handleNameBlur = (e) => {
     setUserInfo({ ...userInfo, name: e.target.value });
@@ -88,7 +90,6 @@ const Register = () => {
     await createUserWithEmailAndPassword(userInfo.email, userInfo.password);
     await updateProfile({ displayName: userInfo.name });
     console.log(user);
-    console.log(firebaseError);
   };
 
   return (
@@ -206,7 +207,7 @@ const Register = () => {
             </p>
           )}
         </div>
-
+        {loading && <UserLoading />}
         <button
           type="submit"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base md:text-sm w-full  px-5 py-2.5 text-center "
