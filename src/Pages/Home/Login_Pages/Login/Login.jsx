@@ -8,7 +8,7 @@ import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../../../firebase.init";
 import SocialLogin from "../Social_Login/SocialLogin";
 import UserLoading from "../../Loading/UserLoading";
@@ -24,8 +24,10 @@ const Login = () => {
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const [togglePassword, setTogglePassword] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
   if (user) {
-    navigate("/checkout");
+    navigate(from,{replace:true});
   }
 
   // ! sign in with email and password
@@ -113,6 +115,11 @@ const Login = () => {
             </button>
           </div>
         </div>
+        {error && (
+            <p className="text-red-700 text-sm font-semibold my-3 ">
+              {error.message}{" "}
+            </p>
+          )}
         {sending && <UserLoading />}
         <button
           type="submit"
