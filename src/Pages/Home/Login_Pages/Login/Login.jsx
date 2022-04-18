@@ -1,11 +1,38 @@
-import React from "react";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
+import React, { useState } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { auth } from "../../../../firebase.init";
 import SocialLogin from "../Social_Login/SocialLogin";
 
 const Login = () => {
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({
+    emailError: "",
+    passwordError: "",
+  });
+  const [togglePassword, setTogglePassword] = useState(false);
+
+  // ! sign in with email and password
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const handleLoginUser = (e) => {
+    e.preventDefault();
+    console.log(userInfo.email, userInfo.password);
+    signInWithEmailAndPassword(userInfo.email, userInfo.password);
+    console.log(user);
+    console.log(error);
+    
+  };
+
   return (
     <div className="border-2 mx-2  shadow-2xl rounded-lg my-10 md:w-4/6 md:mx-auto p-10  ">
-      <form>
+      <form onSubmit={handleLoginUser}>
         <h1 className="text-center mb-3 text-2xl font-semibold"> Login </h1>
         <div className="mb-6">
           <label
@@ -20,8 +47,9 @@ const Login = () => {
             type="email"
             id="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            placeholder="something@gmail.com "
+            placeholder="email or username "
             required=""
+            onBlur={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
           />
         </div>
         <div className="mb-6">
@@ -31,13 +59,29 @@ const Login = () => {
           >
             Enter Your password
           </label>
-          <input
-            type="password"
-            id="password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            placeholder="password"
-            required=""
-          />
+          <div className="relative">
+            <input
+              type={togglePassword ? "text" : "password"}
+              id="password"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+              placeholder="password"
+              required=""
+              onBlur={(e) =>
+                setUserInfo({ ...userInfo, password: e.target.value })
+              }
+            />
+            <span
+              onClick={() => setTogglePassword(!togglePassword)}
+              className="absolute top-2 cursor-pointer right-3 "
+            >
+              {" "}
+              {togglePassword ? (
+                <EyeOffIcon className="h-5 w-5 text-blue-500" />
+              ) : (
+                <EyeIcon className="h-5 w-5 text-blue-500" />
+              )}
+            </span>
+          </div>
         </div>
         <div className="flex items-start mb-6">
           <div className="ml-3 text-sm">

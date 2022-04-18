@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
+  useAuthState,
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import SocialLogin from "../Social_Login/SocialLogin";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import { auth } from "../../../../firebase.init";
@@ -11,6 +12,7 @@ import Loading from "../../Loading/Loading";
 import UserLoading from "../../Loading/UserLoading";
 
 const Register = () => {
+  const [user] = useAuthState(auth)
   // ! get user information from input field.
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -23,23 +25,19 @@ const Register = () => {
     emailError: "",
     passwordError: "",
     confirmPasswordError: "",
-    others: "",
+    firebaseError: "",
   });
   // show password or hide password
   const [togglePassword, setTogglePassword] = useState(false);
-
+  const navigate = useNavigate()
   // ! create user with firebase hooks
-  const [createUserWithEmailAndPassword, user, loading, firebaseError] =
+  const [createUserWithEmailAndPassword, newUser, loading, firebaseError] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   // ! update user name
   const [updateProfile] = useUpdateProfile(auth);
 
   const handleNameBlur = (e) => {
     setUserInfo({ ...userInfo, name: e.target.value });
-    console.log(userInfo.name);
-    if (userInfo.name === "") {
-      console.log("name is empte");
-    }
   };
 
   const handleEmailBlur = (e) => {
@@ -85,11 +83,16 @@ const Register = () => {
     }
   };
 
+  if(user) {
+    navigate('/home')
+  }
+
   const handleCreateUser = async (e) => {
     e.preventDefault();
     await createUserWithEmailAndPassword(userInfo.email, userInfo.password);
     await updateProfile({ displayName: userInfo.name });
     console.log(user);
+    // console.log(firebaseError);
   };
 
   return (
@@ -204,6 +207,11 @@ const Register = () => {
             <p className="text-red-700 text-sm font-semibold my-3 ">
               {" "}
               {errors.confirmPasswordError}{" "}
+            </p>
+          )}
+          {firebaseError && (
+            <p className="text-red-700 text-sm font-semibold my-3 ">
+              {firebaseError.message}{" "}
             </p>
           )}
         </div>
