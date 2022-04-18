@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import SocialLogin from "../Social_Login/SocialLogin";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
+import { auth } from "../../../../firebase.init";
 
 const Register = () => {
   // ! get user information from input field.
@@ -17,6 +23,22 @@ const Register = () => {
     confirmPasswordError: "",
     others: "",
   });
+  // show password or hide password
+  const [togglePassword, setTogglePassword] = useState(false);
+
+  // ! create user with firebase hooks
+  const [createUserWithEmailAndPassword, user, loading, firebaseError] =
+    useCreateUserWithEmailAndPassword(auth);
+  // ! update user name
+  const [updateProfile, updating, error] = useUpdateProfile(auth);
+
+  const handleNameBlur = (e) => {
+    setUserInfo({ ...userInfo, name: e.target.value });
+    console.log(userInfo.name);
+    if (userInfo.name === "") {
+      console.log("name is empte");
+    }
+  };
 
   const handleEmailBlur = (e) => {
     const emailRegEx = /\S+@\S+\.\S+/;
@@ -61,20 +83,12 @@ const Register = () => {
     }
   };
 
-  // if (
-  //   userInfo.name ||
-  //   userInfo.email ||
-  //   userInfo.password ||
-  //   userInfo.confirmPassword === ""
-  // ) {
-  //   return
-  // }
-
-  const handleCreateUser = (e) => {
+  const handleCreateUser = async (e) => {
     e.preventDefault();
-    console.log(userInfo.password, userInfo.confirmPassword, userInfo.email);
-    console.log(errors.emailError);
-    console.log(errors.confirmPasswordError, errors.passwordError);
+    await createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+    await updateProfile({ displayName: userInfo.name });
+    console.log(user);
+    console.log(firebaseError);
   };
 
   return (
@@ -99,7 +113,7 @@ const Register = () => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             placeholder="Full Name "
             required=""
-            // onBlur={ (e) => setUserInfo({...userInfo, name: e.target.value}) }
+            onBlur={handleNameBlur}
           />
         </div>
         <div className="mb-6">
@@ -127,14 +141,27 @@ const Register = () => {
           >
             Create Password
           </label>
-          <input
-            type="password"
-            id="password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            placeholder=" new password"
-            required=""
-            onBlur={handlePasswordBlur}
-          />
+          <div className="relative">
+            <input
+              type={togglePassword ? "text" : "password"}
+              id="password"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+              placeholder=" new password"
+              required=""
+              onBlur={handlePasswordBlur}
+            />
+            <span
+              onClick={() => setTogglePassword(!togglePassword)}
+              className="absolute top-2 cursor-pointer right-3 "
+            >
+              {" "}
+              {togglePassword ? (
+                <EyeOffIcon className="h-5 w-5 text-blue-500" />
+              ) : (
+                <EyeIcon className="h-5 w-5 text-blue-500" />
+              )}
+            </span>
+          </div>
           {/* show errors if */}
           {errors.passwordError && (
             <p className="text-red-700 text-sm font-semibold my-3 ">
@@ -150,14 +177,27 @@ const Register = () => {
           >
             Repeat Password
           </label>
-          <input
-            type="password"
-            id="confirm-password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            placeholder=" confirm password"
-            required=""
-            onBlur={handleConfirmPasswordBlur}
-          />
+          <div className="relative">
+            <input
+              type={togglePassword ? "text" : "password"}
+              id="confirm-password"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+              placeholder=" new password"
+              required=""
+              onBlur={handleConfirmPasswordBlur}
+            />
+            <span
+              onClick={() => setTogglePassword(!togglePassword)}
+              className="absolute top-2 cursor-pointer right-3 "
+            >
+              {" "}
+              {togglePassword ? (
+                <EyeOffIcon className="h-5 w-5 text-blue-500" />
+              ) : (
+                <EyeIcon className="h-5 w-5 text-blue-500" />
+              )}
+            </span>
+          </div>
           {/* show errors if */}
           {errors.confirmPasswordError && (
             <p className="text-red-700 text-sm font-semibold my-3 ">
